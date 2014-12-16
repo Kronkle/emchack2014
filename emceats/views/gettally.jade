@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1
+    | The results are in!
+  h2 The highest-voted criteria are:
+  - var count = 0;
+  each critwinner, i in AnswerSort
+    if count == 0 
+      h3= critwinner.desc
+    else if count == 3
+      h3= critwinner.desc
+    else if count == 6
+      h3= critwinner.desc
+    - count++;  
+    
+  
+  form#formhome(name="cleardb",method="post",action="/cleardb")
+    button(type="submit", class="btn btn-primary")
+      | Return Home

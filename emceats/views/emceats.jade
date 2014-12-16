@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1 EMC Eats
+  p.lead For when your friends don't know where to go to lunch.
+  hr
+  div.row(style="overflow:auto")
+    center
+      form#formsubmitanswers(name="submitanswers",method="post",action="/submitanswers")
+        each dbentry, i in dblist
+          if(dbentry.pollid == "Q1" || dbentry.pollid == "Q2" || dbentry.pollid == "Q3")
+            div.col-md-4
+              h2= dbentry.desc
+              // For every entry in the database
+              each dbentry2, h in dblist
+                // If entry is Q1
+                if(dbentry.pollid == "Q1")
+                  if(dbentry2.pollid == "Q1A1" || dbentry2.pollid == "Q1A2" || dbentry2.pollid == "Q1A3")
+                    input#Element1(type="radio", name="Answer1", value=dbentry2.pollid, checked=true)
+                    answertext= dbentry2.desc
+                    br
+                else if(dbentry.pollid == "Q2")
+                  if(dbentry2.pollid == "Q2A1" || dbentry2.pollid == "Q2A2" || dbentry2.pollid == "Q2A3")
+                    input#Element2(type="radio", name="Answer2", value=dbentry2.pollid, checked = true)
+                    answertext= dbentry2.desc
+                    br
+                else
+                   if(dbentry2.pollid == "Q3A1" || dbentry2.pollid == "Q3A2" || dbentry2.pollid == "Q3A3")
+                    input#Element3(type="radio", name="Answer3", value=dbentry2.pollid, checked = true)
+                    answertext= dbentry2.desc
+                    br
+        br
+        button(type="submit", class="btn btn-success btn-lg buttonsize", style="margin-top:50px")
+          | Submit
+      br
+      form#formgettally(name="gettally",method="get",action="/gettally",style="margin-top:1px") 
+        button(type="submit", class="btn btn-danger btn-lg buttonsize")
+          | End Survey
+      img(src="/images/burger.png", style="margin-top:75px")
