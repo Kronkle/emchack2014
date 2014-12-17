@@ -1,20 +1,22 @@
 extends layout
 
 block content
-  h1
-    | The results are in!
-  h2 The highest-voted criteria are:
-  - var count = 0;
-  each critwinner, i in AnswerSort
-    if count == 0 
-      h3= critwinner.desc
-    else if count == 3
-      h3= critwinner.desc
-    else if count == 6
-      h3= critwinner.desc
-    - count++;  
-    
+  h1 The results are in!
   
+  h2 Favorite Type:
+    p=AnswerSort[0].desc
+  h2 Amount You Will Spend:
+    p=AnswerSort[1].desc
+  h2 Distance You Will Travel:
+    p=AnswerSort[2].desc
+  
+  h1
+    | Google Places text search result
+  each entry, i in response
+    p= entry.name
   form#formhome(name="cleardb",method="post",action="/cleardb")
     button(type="submit", class="btn btn-primary")
       | Return Home
+  form#formgettally(name="maps",method="get",action="/maps",style="margin-top:1px") 
+        button(type="submit", class="btn btn-danger btn-lg buttonsize")
+          | Google Maps

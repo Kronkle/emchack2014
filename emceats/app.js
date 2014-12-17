@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var google = require('googlemaps');
+
 
 // New Code - KEE added from tutorial
 var mongo = require('mongodb');
@@ -69,5 +71,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
+app.listen(process.env.PORT);
 module.exports = app;
